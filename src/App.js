@@ -13,6 +13,7 @@ import 'antd/dist/antd.css';
 import { Navbar, Homepage, Cryptocurrencies, CryptoDetails, News, Footer } from './components';
 
 function App() {
+
   const { setApiData } = useApiData(); // Access setApiData from the context
 
   // Fetch the API data here and update it using the context
@@ -38,6 +39,7 @@ function App() {
     }
   };
 
+
   useEffect(() => {
     fetchData();
     fetchCoinsData();
@@ -60,7 +62,7 @@ function App() {
         'tiers[0]': '1',
         orderBy: 'marketCap',
         orderDirection: 'desc',
-        limit: '10',
+        limit: '20' , 
         offset: '0'
       },
       headers: {
@@ -77,13 +79,6 @@ function App() {
       console.error(error);
     }
   };
-
-  // useEffect(() => {
-  //   fetchCoinsData();
-  // }, []);
-
-
-
 
   const Layout = () => {
     return (

@@ -6,6 +6,7 @@ import News from './News';
 
 const { Title } = Typography;
 const Homepage = () => {
+
   return (
     <div >
       <CoinStats />
