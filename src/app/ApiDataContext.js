@@ -1,5 +1,5 @@
 
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const ApiDataContext = createContext();
 
@@ -9,9 +9,10 @@ export const useApiData = () => {
 
 export const ApiDataProvider = ({ children }) => {
     const [apiData, setApiData] = useState(null);
+    const [coinsData, setCoinsData] = useState(null);
 
     return (
-        <ApiDataContext.Provider value={{ apiData, setApiData }}>
+        <ApiDataContext.Provider value={{ apiData, setApiData, coinsData, setCoinsData }}>
             {children}
         </ApiDataContext.Provider>
     );
