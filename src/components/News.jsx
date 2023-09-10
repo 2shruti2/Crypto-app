@@ -18,7 +18,7 @@ const News = ({ simplified }) => {
 
   useEffect(() => {
     if (newsData && newsData.value) {
-      // Create a subset of the cryptocurrencies based on the count value
+      // Created a subset of the cryptocurrencies based on the count value
       const limitedNews = simplified
         ? newsData.value.slice(0, 6) // Display the first 10 if simplified
         : newsData.value.slice(0, 12); // Display the first 20 otherwise

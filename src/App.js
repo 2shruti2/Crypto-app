@@ -10,7 +10,7 @@ import './App.css'
 import 'antd/dist/antd.css';
 
 
-import { Navbar, Homepage, Cryptocurrencies, CryptoDetails, News, Footer } from './components';
+import { Navbar, Homepage, Cryptocurrencies, News, Footer } from './components';
 
 function App() {
 
@@ -83,7 +83,7 @@ function App() {
 
     const newsoption = {
       method: 'GET',
-      url: 'https://bing-news-search1.p.rapidapi.com/news',
+      url: 'https://bing-news-search1.p.rapidapi.com/news/search?q=bitcoin',
       params: {
         safeSearch: 'Off',
         textFormat: 'Raw'
@@ -125,7 +125,6 @@ function App() {
             <Outlet />
           </div>
 
-
           <div className='footer'>
             <Footer />
           </div>
@@ -148,10 +147,6 @@ function App() {
         {
           path: 'cryptocurrencies',
           element: <Cryptocurrencies />
-        },
-        {
-          path: '/crypto/:coinId',
-          element: <CryptoDetails />
         },
         {
           path: '/news',
