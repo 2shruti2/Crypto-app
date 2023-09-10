@@ -14,9 +14,10 @@ import { Navbar, Homepage, Cryptocurrencies, CryptoDetails, News, Footer } from 
 
 function App() {
 
+  //STATS API
+
   const { setApiData } = useApiData(); // Access setApiData from the context
 
-  // Fetch the API data here and update it using the context
   const fetchData = async () => {
     const options = {
       method: 'GET',
@@ -40,17 +41,10 @@ function App() {
   };
 
 
-  useEffect(() => {
-    fetchData();
-    fetchCoinsData();
-  }, []);
+  //COINS API
 
+  const { setCoinsData } = useApiData();
 
-
-
-  const { setCoinsData } = useApiData(); // Access setApiData from the context
-
-  // Fetch the API data here and update it using the context
   const fetchCoinsData = async () => {
 
     const option = {
@@ -62,7 +56,7 @@ function App() {
         'tiers[0]': '1',
         orderBy: 'marketCap',
         orderDirection: 'desc',
-        limit: '20' , 
+        limit: '20',
         offset: '0'
       },
       headers: {
@@ -73,12 +67,51 @@ function App() {
 
     try {
       const response = await axios.request(option);
-      console.log("sring " , response.data.data)
+      // console.log("sring " , response.data.data)
       setCoinsData(response.data.data); // Update the API data in the context
     } catch (error) {
       console.error(error);
     }
   };
+
+
+  //NEWS API
+
+  const { setNewsData } = useApiData();
+
+  const fetchNewsData = async () => {
+
+    const newsoption = {
+      method: 'GET',
+      url: 'https://bing-news-search1.p.rapidapi.com/news',
+      params: {
+        safeSearch: 'Off',
+        textFormat: 'Raw'
+      },
+      headers: {
+        'X-BingApis-SDK': 'true',
+        'X-RapidAPI-Key': '38b8a14652msh80b3761cfac16a1p1863dejsndc65662e9f61',
+        'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com'
+      }
+    };
+
+    try {
+      const response = await axios.request(newsoption);
+      // console.log("string ", response.data)
+      setNewsData(response.data); // Update the API data in the context
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+    fetchCoinsData();
+    fetchNewsData();
+  }, []);
+
+
+
 
   const Layout = () => {
     return (
@@ -89,9 +122,9 @@ function App() {
 
         <div className='main '>
           <div className='routes'>
-          <Outlet />
+            <Outlet />
           </div>
-          
+
 
           <div className='footer'>
             <Footer />
@@ -101,6 +134,7 @@ function App() {
       </div>
     )
   }
+
 
   const router = createBrowserRouter([
     {

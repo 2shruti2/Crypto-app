@@ -10,26 +10,6 @@ const Cryptocurrencies = ({ simplified }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [cryptos, setCryptos] = useState();
 
-  // useEffect(() => {
-  //   if (coinsData && coinsData.coins) {
-  //     // Create a subset of the cryptocurrencies based on the count value
-  //     const limitedCryptos = simplified
-  //       ? coinsData.coins.slice(0, 10) // Display the first 10 if simplified
-  //       : coinsData.coins.slice(0, 20); // Display the first 20 otherwise
-
-  //     setCryptos(limitedCryptos);
-
-  //   }
-  // }, [coinsData, simplified]);
-
-  // useEffect(() => {
-  //   setCryptos(coinsData?.coins);
-
-  //   const filteredData = coinsData?.coins.filter((item) => item.name.toLowerCase().includes(searchTerm));
-
-  //   setCryptos(filteredData);
-  // }, [coinsData, searchTerm]);
-
   useEffect(() => {
     if (coinsData && coinsData.coins) {
       let filteredData = coinsData.coins;
