@@ -2,6 +2,6 @@
 
 Technologies used:
 
-1.react.js
+1.React.js
 
 2.Ant Design
